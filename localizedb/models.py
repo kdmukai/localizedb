@@ -11,10 +11,22 @@ class FieldGroup(models.Model):
     description = models.CharField(max_length=128)
     
     def __unicode__(self):
-            return "%s (%i)" % (self.description, self.id)
+            return "%s (%i)" % (self.description, self.id)            
+
+    def add_translated_field(self, field_value, language_code):
+        # Can only add TranslatedFields after the FieldGroup has been saved
+        if not self.id:
+            raise self.DoesNotExist
+        
+        translated_field = TranslatedField()
+        translated_field.field_group = self
+        translated_field.translation = field_value
+        translated_field.language_code = language_code
+        translated_field.save()
+        
 
     def get_translated_field(self, language_code):
-        translated_fields = TranslatedField.objects.filter(localizable_string=self)
+        translated_fields = TranslatedField.objects.filter(field_group=self)
         
         for translated_field in translated_fields:
             if translated_field.language_code == language_code:
