@@ -83,6 +83,8 @@ or:
 {{ my_model.display_name|localize:LANGUAGE_CODE }}
 ```
 
+If the FieldGroup does not contain a TranslatedField for the given language code, the template tag will fall back to the first TranslatedField for the FieldGroup. If there are no TranslatedFields in the FieldGroup, it will display the FieldGroup.description that is really intended to only be visible in the Django admin UI.
+
 
 ## Django Admin support ##
 ![FieldGroup and child TranslatedFields in the Django admin](https://raw.github.com/kdmukai/localizedb/master/admin_screen.png)
