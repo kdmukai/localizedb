@@ -30,7 +30,7 @@ It's also somewhat annoying to retrieve this data, especially in a template:
 {% if LANGUAGE_CODE == 'en' %}
 	{{ my_model.display_name_en }}
 {% elif LANGUAGE_CODE == 'fr' %}
-	{{ my_model.display_name_en }}
+	{{ my_model.display_name_fr }}
 {% endif %}
 ```
 
@@ -72,6 +72,7 @@ from django.utils import translation
 
 	my_model.display_name.get_translated_field(translation.get_language())
 ```
+
 
 But the most convenient access is in a template via the included template tag:
 ```django
