@@ -62,7 +62,7 @@ from localizedb.models import FieldGroup, TranslatedField
 ```
 
 ## Django Admin support ##
-![FieldGroup and child TranslatedFields in the Django admin](admin_screen.png)
+![FieldGroup and child TranslatedFields in the Django admin](https://raw.github.com/kdmukai/localizedb/master/admin_screen.png)
 
 A FieldGroup will display its child TranslatedFields in the Django admin. Despite the code example above, it's more likely that you'll add a single language in code and then manually add the translations via the admin.
 
