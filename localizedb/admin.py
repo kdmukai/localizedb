@@ -2,6 +2,12 @@ from django.contrib import admin
 
 from localizedb.models import FieldGroup, TranslatedField
 
+
+
+"""--------------------------------------------------------------------------
+    Customize the FieldGroup admin entry to include its corresponding
+    TranslatedFields
+--------------------------------------------------------------------------"""
 class TranslatedFieldInline(admin.StackedInline):
     model = TranslatedField
     

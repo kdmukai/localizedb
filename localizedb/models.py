@@ -2,9 +2,11 @@ from django.db import models
 from django.conf.global_settings import LANGUAGES
 
 
-"""--------------------------------------------------------------------
-
---------------------------------------------------------------------"""
+"""--------------------------------------------------------------------------
+    The encapsulation class that client models should reference as a 
+    ForeignKey field. Behind the scenes it will create TranslatedFields as 
+    needed to support whatever languages you add to it via the Django admin.
+--------------------------------------------------------------------------"""
 class FieldGroup(models.Model):
     description = models.CharField(max_length=128)
     
@@ -24,9 +26,13 @@ class FieldGroup(models.Model):
             return None
 
 
-"""--------------------------------------------------------------------
-
---------------------------------------------------------------------"""
+"""--------------------------------------------------------------------------
+    The class that stores a single translated value for a given language_code
+    and provides retrieval access to its parent FieldGroup.
+    
+    In general you do not want to reference TranslatedFields directly in
+    your client code models. 
+--------------------------------------------------------------------------"""
 class TranslatedField(models.Model):
     field_group = models.ForeignKey(FieldGroup)
     language_code = models.CharField(max_length=7, choices=LANGUAGES)
