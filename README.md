@@ -55,11 +55,33 @@ from localizedb.models import FieldGroup, TranslatedField
 	
 	my_model = MyModel()
 	my_model.display_name = field_group
-	my_model.display_name.add_translated_field('Let's use English', 'en')
-	my_model.display_name.add_translated_field('Vamos a utilizar Español', 'es')
-	my_model.display_name.add_translated_field('Nous allons utiliser Français', 'fr')
+	my_model.display_name.add_translated_field('We can use English', 'en')
+	my_model.display_name.add_translated_field('Vamos a utilizar Espanol', 'es')
+	my_model.display_name.add_translated_field('Nous allons utiliser Francais', 'fr')
 	my_model.save()
 ```
+
+You can then retrieve the proper TranslatedField in a view:
+```python
+	my_model.display_name.get_translated_field('en')
+```
+	
+Or retrieve it dynamically based on the current language:
+```python
+from django.utils import translation
+
+	my_model.display_name.get_translated_field(translation.get_language())
+```
+
+But the most convenient access is in a template via the included template tag:
+```django
+{% load localizedb_filters %}
+{{ my_model.display_name|localize:'en' }}
+
+or:
+{{ my_model.display_name|localize:LANGUAGE_CODE }}
+```
+
 
 ## Django Admin support ##
 ![FieldGroup and child TranslatedFields in the Django admin](https://raw.github.com/kdmukai/localizedb/master/admin_screen.png)
