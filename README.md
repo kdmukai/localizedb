@@ -48,7 +48,7 @@ class MyModel(models.Model):
 
 You would then create a new instance of MyModel with:
 ```python
-from localizedb.models import FieldGroup, TranslatedField
+from localizedb.models import FieldGroup
 	field_group = FieldGroup()
 	field_group.description = 'Description for Django admin UI'
 	field_group.save()
@@ -89,5 +89,11 @@ If the FieldGroup does not contain a TranslatedField for the given language code
 ## Django Admin support ##
 ![FieldGroup and child TranslatedFields in the Django admin](https://raw.github.com/kdmukai/localizedb/master/admin_screen.png)
 
-A FieldGroup will display its child TranslatedFields in the Django admin. Despite the code example above, it's more likely that you'll add a single language in code and then manually add the translations via the admin.
+A FieldGroup will display its child TranslatedFields in the Django admin. Despite the code example above, the most common use case is to have a user create a single language entry when it's created and then a site admin would manually add the other necessary translations via the Django admin.
 
+
+##Misc##
+If you're going to use languages that use unicode characters, make sure you create your database with the proper charset and collation, such as:
+```
+CREATE DATABASE my_db_name CHARSET utf8 COLLATE utf8_unicode_ci;
+```
