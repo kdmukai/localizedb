@@ -8,7 +8,7 @@ from django.conf.global_settings import LANGUAGES
     needed to support whatever languages you add to it via the Django admin.
 --------------------------------------------------------------------------"""
 class FieldGroup(models.Model):
-    description = models.CharField(max_length=128)
+    description = models.CharField(max_length=128, blank=True, null=True)
     
     def __unicode__(self):
             return "%s (%i)" % (self.description, self.id)            
