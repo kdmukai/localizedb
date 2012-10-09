@@ -25,17 +25,23 @@ class FieldGroup(models.Model):
         translated_field.save()
         
 
-    def get_translated_field(self, language_code):
+    def get_translation(self, language_code):
         translated_fields = TranslatedField.objects.filter(field_group=self)
         
+        # Find the TranslatedField that matches the language_code...
         for translated_field in translated_fields:
             if translated_field.language_code == language_code:
                 return translated_field.translation
             
+        # Fall back to the first TranslatedField entry if a translation for 
+        #    the requested language_code is unavailable...
         if translated_fields.count() > 0:
             return translated_field[0].translation
+
+        # Fall back all the way to the FieldGroup's description in the 
+        #    Django admin...
         else:
-            return None
+            return description
 
 
 """--------------------------------------------------------------------------

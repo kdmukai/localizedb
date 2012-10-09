@@ -17,5 +17,6 @@ class FieldGroupAdmin(admin.ModelAdmin):
         TranslatedFieldInline,
     ]
 
-admin.site.register(FieldGroup, FieldGroupAdmin)
-admin.site.register(TranslatedField)
+# Uncomment to add to the admin
+#admin.site.register(FieldGroup, FieldGroupAdmin)
+#admin.site.register(TranslatedField)
