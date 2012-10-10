@@ -11,7 +11,7 @@ class FieldGroup(models.Model):
     description = models.CharField(max_length=128, blank=True, null=True)
     
     def __unicode__(self):
-            return "%s (%i)" % (self.description, self.id)            
+            return "%s" % (self.description)            
 
     def add_translated_field(self, field_value, language_code):
         # Can only add TranslatedFields after the FieldGroup has been saved
@@ -57,7 +57,7 @@ class TranslatedField(models.Model):
     translation = models.CharField(max_length=1024)
 
     def __unicode__(self):
-            return "%s | %s (%i)" % (self.field_group.description, self.language_code, self.id)
+            return "%s | %s" % (self.field_group.description, self.language_code)
 
 
 
