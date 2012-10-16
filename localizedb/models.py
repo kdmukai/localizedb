@@ -36,12 +36,12 @@ class FieldGroup(models.Model):
         # Fall back to the first TranslatedField entry if a translation for 
         #    the requested language_code is unavailable...
         if translated_fields.count() > 0:
-            return translated_field[0].translation
+            return translated_fields[0].translation
 
         # Fall back all the way to the FieldGroup's description in the 
         #    Django admin...
         else:
-            return description
+            return self.description
 
 
 """--------------------------------------------------------------------------
